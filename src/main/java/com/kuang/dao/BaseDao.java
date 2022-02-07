@@ -27,7 +27,7 @@ public class BaseDao {
     }
 
     //获取数据库的连接
-    public static Connection getcConnection(){
+    public static Connection getConnection(){
         Connection connection = null;
         try {
 
@@ -67,9 +67,36 @@ public class BaseDao {
     public static boolean closeResource(Connection connection,PreparedStatement preparedStatement,ResultSet resultSet){
         boolean flag = true;
         if(resultSet!= null){
-
+            try {
+                resultSet.close();//GC回收
+                resultSet = null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                flag = false;
+            }
         }
 
+        if(preparedStatement!= null){
+            try {
+                preparedStatement.close();//GC回收
+                preparedStatement = null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        }
+
+        if(connection!= null){
+            try {
+                connection.close();//GC回收
+                connection = null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                flag = false;
+            }
+        }
+
+        return  flag;
 
     }
 }
