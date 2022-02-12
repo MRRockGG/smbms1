@@ -1,5 +1,6 @@
 package com.kuang.pojo;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class User {
@@ -13,9 +14,18 @@ public class User {
     private String address;//'地址'
     private Integer userRole;//'用户角色（取自角色表-角色id）'
     private Integer createdBy;//'创建者（userId）'
-    private Date creationDate;//'创建时间'
+    private Timestamp creationDate;//'创建时间'
     private Integer modifyBy;//'更新者（userId）'
-    private Date modifyDate;//'更新时间'
+    private Timestamp modifyDate;//'更新时间'
+
+    public void setCreationDate(Timestamp creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setModifyDate(Timestamp modifyDate) {
+        this.modifyDate = modifyDate;
+    }
+
     private String userRoleName;    //用户角色名称
 
 
@@ -107,13 +117,7 @@ public class User {
         this.createdBy = createdBy;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
-    }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
 
     public Integer getModifyBy() {
         return modifyBy;
@@ -123,13 +127,7 @@ public class User {
         this.modifyBy = modifyBy;
     }
 
-    public Date getModifyDate() {
-        return modifyDate;
-    }
 
-    public void setModifyDate(Date modifyDate) {
-        this.modifyDate = modifyDate;
-    }
 
     public String getUserRoleName() {
         return userRoleName;
